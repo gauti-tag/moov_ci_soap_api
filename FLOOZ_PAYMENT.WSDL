@@ -1,0 +1,160 @@
+<wsdl:definitions
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://onlinepayment.tlc.com.ph/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CheckTransactionService" targetNamespace="http://onlinepayment.tlc.com.ph/">
+	<wsdl:types>
+		<xs:schema
+			xmlns:tns="http://onlinepayment.tlc.com.ph/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://onlinepayment.tlc.com.ph/" version="1.0">
+			<xs:element name="GetMRORReference" type="tns:GetMRORReference"/>
+			<xs:element name="GetMRORReferenceResponse" type="tns:GetMRORReferenceResponse"/>
+			<xs:element name="checkTran" type="tns:checkTran"/>
+			<xs:element name="checkTranResponse" type="tns:checkTranResponse"/>
+			<xs:element name="sendMror" type="tns:sendMror"/>
+			<xs:element name="sendMrorResponse" type="tns:sendMrorResponse"/>
+			<xs:element name="sendTran" type="tns:sendTran"/>
+			<xs:element name="sendTranResponse" type="tns:sendTranResponse"/>
+			<xs:complexType name="sendMror">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="token" type="xs:string"/>
+					<xs:element minOccurs="0" name="destMsisdn" type="xs:string"/>
+					<xs:element minOccurs="0" name="amount" type="xs:string"/>
+					<xs:element minOccurs="0" name="merchantRefid" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="sendMrorResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="MrorResponse" type="tns:standardResp"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="standardResp">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="statusCode" type="xs:int"/>
+					<xs:element minOccurs="0" name="statusDesc" type="xs:string"/>
+					<xs:element minOccurs="0" name="message" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="sendTran">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="token" type="xs:string"/>
+					<xs:element minOccurs="0" name="referenceid" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="sendTranResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="TranResponse" type="tns:standardResp"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="GetMRORReference">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="token" type="xs:string"/>
+					<xs:element minOccurs="0" name="merchantRefid" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="GetMRORReferenceResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="GetMRORReferenceResponse" type="tns:standardResp"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="checkTran">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="token" type="xs:string"/>
+					<xs:element minOccurs="0" name="merchantRefid" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="checkTranResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="CheckTranResponse" type="tns:standardResp"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="GetMRORReferenceResponse">
+		<wsdl:part element="tns:GetMRORReferenceResponse" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendTranResponse">
+		<wsdl:part element="tns:sendTranResponse" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMRORReference">
+		<wsdl:part element="tns:GetMRORReference" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendMrorResponse">
+		<wsdl:part element="tns:sendMrorResponse" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkTranResponse">
+		<wsdl:part element="tns:checkTranResponse" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendTran">
+		<wsdl:part element="tns:sendTran" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendMror">
+		<wsdl:part element="tns:sendMror" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="checkTran">
+		<wsdl:part element="tns:checkTran" name="parameters"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="CheckTransaction">
+		<wsdl:operation name="sendMror">
+			<wsdl:input message="tns:sendMror" name="sendMror"></wsdl:input>
+			<wsdl:output message="tns:sendMrorResponse" name="sendMrorResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sendTran">
+			<wsdl:input message="tns:sendTran" name="sendTran"></wsdl:input>
+			<wsdl:output message="tns:sendTranResponse" name="sendTranResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMRORReference">
+			<wsdl:input message="tns:GetMRORReference" name="GetMRORReference"></wsdl:input>
+			<wsdl:output message="tns:GetMRORReferenceResponse" name="GetMRORReferenceResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkTran">
+			<wsdl:input message="tns:checkTran" name="checkTran"></wsdl:input>
+			<wsdl:output message="tns:checkTranResponse" name="checkTranResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CheckTransactionServiceSoapBinding" type="tns:CheckTransaction">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="sendMror">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="sendMror">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendMrorResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sendTran">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="sendTran">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendTranResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMRORReference">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="GetMRORReference">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="GetMRORReferenceResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="checkTran">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="checkTran">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="checkTranResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CheckTransactionService">
+		<wsdl:port binding="tns:CheckTransactionServiceSoapBinding" name="CheckTransactionPort">
+			<soap:address location="https://41.191.68.224/OnlinePayment"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
